@@ -10,6 +10,7 @@ theme = 'blowfish'
   homepage = { layout = "background", homepageImage = "background.jpg" }
   # 커스텀 CSS 파일을 연결합니다.
   custom_css = ["css/custom.css"]
+  
 [params.header]
     layout = "fixed" 
     showName = false # 상단 좌측의 사이트 이름을 숨깁니다.

@@ -1,55 +1,52 @@
-/* 1. 메인 타이틀(h1)을 화면 정중앙에 크게 배치 */
-.layout-background h1 {
-    display: flex !important;
-    justify-content: center !important;
-    /* 가로 가운데 */
-    align-items: center !important;
-    /* 세로 가운데 */
+/* [1] 브랜드 로고(빨간 동그라미)를 화면 정중앙으로 강제 이동 및 확대 */
+header .navbar-brand {
+    position: fixed !important;
+    /* 헤더 틀을 벗어나 화면 기준으로 고정 */
+    left: 50% !important;
+    /* 가로 중앙 */
+    top: 40% !important;
+    /* 세로 40% 지점 (높낮이 조절 포인트) */
+    transform: translate(-50%, -50%) !important;
+    /* 정확한 중심점 일치 */
+
     font-size: 6rem !important;
-    /* 폰트 크기 (원하는 만큼 숫자를 키우세요) */
-    font-weight: 800 !important;
-    /* 아주 굵게 */
-    text-align: center !important;
-    min-height: 20vh;
-    /* 영역 확보 */
-    margin-top: 5vh !important;
-    /* 상단 여백 조절 */
+    /* 웅장한 크기 */
+    font-weight: 900 !important;
+    /* 아주 두껍게 */
+    color: white !important;
+    /* 글자색 흰색 */
+    z-index: 9999 !important;
+    /* 최상단에 배치 */
+    white-space: nowrap !important;
+    /* 줄바꿈 방지 */
 }
 
-/* 2. 제목 아래 본문들도 가운데 정렬 */
+/* [2] 헤더 우측 아이콘(검색, 설정 등) 위치 고정 */
+header .flex.items-center {
+    position: fixed !important;
+    right: 2rem !important;
+    /* 우측 여백 */
+    top: 1.5rem !important;
+    /* 상단 여백 */
+    z-index: 10000 !important;
+    /* 아이콘이 로고에 가려지지 않게 함 */
+}
+
+/* [3] 메인 페이지 콘텐츠 레이아웃 정리 */
+.layout-background h1 {
+    display: none !important;
+    /* 중앙에 중복으로 뜨는 h1 제목은 숨김 */
+}
+
 .layout-background .prose {
     text-align: center !important;
+    /* 본문 텍스트 가운데 정렬 */
     margin: 0 auto !important;
+    padding-top: 55vh !important;
+    /* 중앙 로고 아래로 본문이 내려오도록 여백 확보 */
 }
 
-/* 3. 전체 콘텐츠를 화면 정중앙으로 밀어넣기 */
 .layout-background .flex-col {
     justify-content: center !important;
     min-height: 80vh;
-}
-
-/* 상단 바의 모든 구속을 풀고 중앙으로 강제 이동 */
-.navbar {
-    position: relative !important;
-}
-
-.navbar-brand {
-    position: absolute !important;
-    left: 50% !important;
-    top: 300px !important;
-    /* 상단에서 300px 아래로 (숫자로 정교하게 조절 가능) */
-    transform: translateX(-50%) !important;
-    font-size: 6rem !important;
-    /* 글자 크기 확대 */
-    font-weight: 900 !important;
-    color: white !important;
-    z-index: 999 !important;
-    white-space: nowrap !important;
-}
-
-/* 우측 아이콘(검색 등)은 원래 자리에 고정 */
-.flex.items-center.text-xl {
-    position: absolute !important;
-    right: 2rem !important;
-    top: 1rem !important;
 }

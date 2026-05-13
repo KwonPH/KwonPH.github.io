@@ -1,7 +1,7 @@
 baseURL = 'https://KwonPH.github.io/'
 # 최신 휴고 버전의 권장 사항에 따라 수정합니다.
 defaultContentLanguage = 'ko'
-title = 'KwonPH 패시브 건축 연구소'
+title = '권희범패시브건축'
 theme = 'blowfish'
 
 [params]

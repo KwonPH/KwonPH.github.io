@@ -16,3 +16,6 @@ theme = 'blowfish'
 [params.footer]
     showCopyright = true
     showThemeAttribution = false
+
+[markup.goldmark.renderer]
+  unsafe = true # 마크다운 내의 HTML(스타일 태그) 사용을 허용합니다.

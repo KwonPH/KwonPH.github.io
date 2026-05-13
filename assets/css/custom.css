@@ -1,0 +1,29 @@
+/* 1. 메인 타이틀(h1)을 화면 정중앙에 크게 배치 */
+.layout-background h1 {
+    display: flex !important;
+    justify-content: center !important;
+    /* 가로 가운데 */
+    align-items: center !important;
+    /* 세로 가운데 */
+    font-size: 6rem !important;
+    /* 폰트 크기 (원하는 만큼 숫자를 키우세요) */
+    font-weight: 800 !important;
+    /* 아주 굵게 */
+    text-align: center !important;
+    min-height: 20vh;
+    /* 영역 확보 */
+    margin-top: 5vh !important;
+    /* 상단 여백 조절 */
+}
+
+/* 2. 제목 아래 본문들도 가운데 정렬 */
+.layout-background .prose {
+    text-align: center !important;
+    margin: 0 auto !important;
+}
+
+/* 3. 전체 콘텐츠를 화면 정중앙으로 밀어넣기 */
+.layout-background .flex-col {
+    justify-content: center !important;
+    min-height: 80vh;
+}

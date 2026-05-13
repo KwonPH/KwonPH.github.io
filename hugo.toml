@@ -1,0 +1,8 @@
+baseURL = 'https://KwonPH.github.io/'
+languageCode = 'ko-kr'
+title = 'South Mountain Style Construction'
+theme = 'blowfish'
+
+[params]
+  colorScheme = "blowfish" # 깔끔한 기본 색상
+  header = { layout = "fixed" } # 상단 메뉴 고정 (사우스 마운틴 스타일)

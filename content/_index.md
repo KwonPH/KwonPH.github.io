@@ -4,6 +4,10 @@ description: "지속 가능한 미래를 짓는 패시브 건축 연구소"
 # 이 부분이 핵심입니다. 테마의 배경 레이아웃을 활성화합니다.
 layout: "background" 
 showDate: false
+featured_image: "featured.jpg"
+resources:
+- src: "featured.jpg"
+  name: "featured"
 ---
 
 ## 가슴 뛰는 건축, 미래를 설계하다

@@ -12,4 +12,4 @@ theme = 'blowfish'
     
   [params.footer]
     showCopyright = true
-    showThemeAttribution = false
+    showThemeAttribution = true

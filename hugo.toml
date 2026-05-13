@@ -11,6 +11,7 @@ theme = 'blowfish'
 
 [params.header]
     layout = "fixed" 
+    showName = false # 상단 좌측의 사이트 이름을 숨깁니다.
     
 [params.footer]
     showCopyright = true

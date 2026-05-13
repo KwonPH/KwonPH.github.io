@@ -1,52 +1,57 @@
-/* [1] 브랜드 로고(빨간 동그라미)를 화면 정중앙으로 강제 이동 및 확대 */
-header .navbar-brand {
-    position: fixed !important;
-    /* 헤더 틀을 벗어나 화면 기준으로 고정 */
-    left: 50% !important;
-    /* 가로 중앙 */
-    top: 40% !important;
-    /* 세로 40% 지점 (높낮이 조절 포인트) */
-    transform: translate(-50%, -50%) !important;
-    /* 정확한 중심점 일치 */
-
-    font-size: 6rem !important;
-    /* 웅장한 크기 */
-    font-weight: 900 !important;
-    /* 아주 두껍게 */
-    color: white !important;
-    /* 글자색 흰색 */
-    z-index: 9999 !important;
-    /* 최상단에 배치 */
-    white-space: nowrap !important;
-    /* 줄바꿈 방지 */
+/* 권희범패시브건축 텍스트를 가운데 정렬 */
+.header a[href="/"] {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
-/* [2] 헤더 우측 아이콘(검색, 설정 등) 위치 고정 */
-header .flex.items-center {
-    position: fixed !important;
-    right: 2rem !important;
-    /* 우측 여백 */
-    top: 1.5rem !important;
-    /* 상단 여백 */
-    z-index: 10000 !important;
-    /* 아이콘이 로고에 가려지지 않게 함 */
-}
-
-/* [3] 메인 페이지 콘텐츠 레이아웃 정리 */
-.layout-background h1 {
-    display: none !important;
-    /* 중앙에 중복으로 뜨는 h1 제목은 숨김 */
-}
-
-.layout-background .prose {
-    text-align: center !important;
-    /* 본문 텍스트 가운데 정렬 */
-    margin: 0 auto !important;
-    padding-top: 55vh !important;
-    /* 중앙 로고 아래로 본문이 내려오도록 여백 확보 */
-}
-
-.layout-background .flex-col {
+/* 기존 좌측 정렬을 무시하고 중앙으로 강제 이동 */
+.header .flex.items-center.justify-between {
     justify-content: center !important;
-    min-height: 80vh;
+    position: relative;
+}
+
+/* 오른쪽에 있는 검색·아이콘 버튼들은 오른쪽으로 유지 */
+.header .flex.items-center.gap-x-4,
+.header nav {
+    margin-left: auto;
+    position: relative;
+    z-index: 20;
+}
+
+/* ====================== 헤더 중앙 로고 ====================== */
+.main-menu {
+    position: relative;
+    justify-content: center !important;
+}
+
+/* 로고를 정확히 가운데로 */
+.main-menu a[href="/"] {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    white-space: nowrap;
+}
+
+/* 오른쪽 메뉴들은 오른쪽으로 유지 */
+.main-menu>.flex.items-center.ms-auto {
+    margin-left: auto;
+    position: relative;
+    z-index: 20;
+}
+
+/* 모바일에서도 잘 보이게 */
+@media (max-width: 768px) {
+    .main-menu a[href="/"] {
+        position: static;
+        transform: none;
+        left: auto;
+        margin: 0 auto;
+    }
+
+    .main-menu {
+        justify-content: space-between !important;
+    }
 }

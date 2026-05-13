@@ -1,16 +1,15 @@
 baseURL = 'https://KwonPH.github.io/'
-languageCode = 'ko-kr'
+# 최신 휴고 버전의 권장 사항에 따라 수정합니다.
+defaultContentLanguage = 'ko'
 title = 'KwonPH 패시브 건축 연구소'
 theme = 'blowfish'
 
 [params]
   colorScheme = "blowfish" 
-  # 사우스 마운틴 느낌의 짙은 색감을 원하시면 "congo"나 "forest"로 바꿔보셔도 좋습니다.
   
   [params.header]
-    layout = "fixed" # 상단 메뉴를 고정하여 전문적인 느낌을 줍니다.
-    showLogo = true
+    layout = "fixed" 
     
   [params.footer]
     showCopyright = true
-    showThemeAttribution = false # 하단 테마 출처를 숨겨 더 깔끔하게 만듭니다.
+    showThemeAttribution = false

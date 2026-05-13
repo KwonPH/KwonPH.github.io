@@ -1,15 +1,13 @@
 ---
 title: "KwonPH Construction & Research"
 description: "지속 가능한 미래를 짓는 패시브 건축 연구소"
-cascade:
-  showDate: false
+# 이 부분이 핵심입니다. 테마의 배경 레이아웃을 활성화합니다.
+layout: "background" 
+showDate: false
 ---
 
-{{< jumbotron 
-    title="가슴 뛰는 건축, 미래를 설계하다" 
-    description="우리는 단순한 건물이 아니라, 지역 사회와 공존하는 삶의 터전을 만듭니다."
-    image="hero-background.jpg"
->}}
+# 가슴 뛰는 건축, 미래를 설계하다
+우리는 단순한 건물이 아니라, 지역 사회와 공존하는 삶의 터전을 만듭니다.
 
 ## 우리의 철학
 사우스 마운틴 컴퍼니가 추구하는 '사람 중심의 건축'을 이곳 홍성에서도 이어갑니다. 

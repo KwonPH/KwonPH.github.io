@@ -27,3 +27,29 @@
     justify-content: center !important;
     min-height: 80vh;
 }
+
+/* 상단 바의 모든 구속을 풀고 중앙으로 강제 이동 */
+.navbar {
+    position: relative !important;
+}
+
+.navbar-brand {
+    position: absolute !important;
+    left: 50% !important;
+    top: 300px !important;
+    /* 상단에서 300px 아래로 (숫자로 정교하게 조절 가능) */
+    transform: translateX(-50%) !important;
+    font-size: 6rem !important;
+    /* 글자 크기 확대 */
+    font-weight: 900 !important;
+    color: white !important;
+    z-index: 999 !important;
+    white-space: nowrap !important;
+}
+
+/* 우측 아이콘(검색 등)은 원래 자리에 고정 */
+.flex.items-center.text-xl {
+    position: absolute !important;
+    right: 2rem !important;
+    top: 1rem !important;
+}

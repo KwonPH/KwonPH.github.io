@@ -6,10 +6,12 @@ theme = 'blowfish'
 
 [params]
   colorScheme = "blowfish" 
-  
-  [params.header]
+  # 아래 설정을 추가하여 배경 이미지를 명시적으로 지정합니다.
+  homepage = { layout = "background", homepageImage = "background.jpg" }
+
+[params.header]
     layout = "fixed" 
     
-  [params.footer]
+[params.footer]
     showCopyright = true
-    showThemeAttribution = true
+    showThemeAttribution = false

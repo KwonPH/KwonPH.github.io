@@ -5,6 +5,10 @@ description: "지속 가능한 미래를 짓는 패시브 건축 연구소"
 showDate: false
 ---
 
+<div class="fullscreen-hero">
+    <img src="/photo1.jpg" alt="권희범 패시브 건축 메인 이미지">
+</div>
+
 <style>
   /* 3. 중앙에 있던 중복 제목들은 계속 숨김 처리 */
   h1:not(.navbar-brand), 
@@ -12,6 +16,7 @@ showDate: false
     display: none !important;
   }
 </style>
+
 
 ## 가슴 뛰는 건축, 미래를 설계하다.
 우리는 단순한 건물이 아니라, 지역 사회와 공존하는 삶의 터전을 만듭니다.

@@ -100,8 +100,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.36bff95f12ccec7d62167932632e2c380728bf44e2f5abc59556d0c46d9a2fa84970536e1c289ecccb4c1befd568ceb68afca36f2e90db323a468266033c2cfe.css"
-    integrity="sha512-Nr/5XxLM7H1iFnkyYy4sOAcov0Ti9avFlVbQxG2aL6hJcFNuHCiezMtMG&#43;/VaM62ivyjby6Q2zI6RoJmAzws/g==">
+    href="/css/main.bundle.min.a4891a366df50d6da86d83c72cdda504f2fef284dd9c59eb82d2195e68191a34a8bcf2fe9824769bb22380dac8401ebf53524fedf8dbd6b676c2a5dfce5b15f3.css"
+    integrity="sha512-pIkaNm31DW2obYPHLN2lBPL&#43;8oTdnFnrgtIZXmgZGjSovPL&#43;mCR2m7IjgNrIQB6/U1JP7fjb1rZ2wqXfzlsV8w==">
 
   
   
@@ -427,48 +427,64 @@
   
   
     <script>
-    console.log("🚀 Fixed Position Fade-out LOADED");
+    console.log("🚀 Fixed Fade-out v6 (변수 중앙관리) LOADED");
 
     document.addEventListener('DOMContentLoaded', function () {
 
+        
+        const config = {
+            topPosition: '1vh',     
+            fadeStart: 80,            
+            fadeEnd: 100,             
+            transitionDuration: '2s' 
+        };
+        
+
+        
         const logo = document.querySelector('a[href="/"]') ||
             document.querySelector('.navbar-brand') ||
             document.querySelector('.header a');
 
+        
         const rightMenu = document.querySelector('header .flex.items-center.gap-x-4') ||
-            document.querySelector('header nav');
+            document.querySelector('header nav') ||
+            document.querySelector('.flex.items-center');
 
         console.log("로고 발견:", logo ? "✅" : "❌");
+        console.log("우측 메뉴 발견:", rightMenu ? "✅" : "❌");
 
-        if (!logo) return;
+        if (!logo && !rightMenu) return;
 
         
-        logo.style.position = 'fixed';
-        logo.style.top = '5vh';
-        logo.style.left = '50%';
-        logo.style.transform = 'translateX(-50%)';
-        logo.style.zIndex = '100';
-        logo.style.transition = 'opacity 0.7s ease-out';
+        if (logo) {
+            logo.style.position = 'fixed';
+            logo.style.top = config.topPosition;
+            logo.style.left = '50%';
+            logo.style.transform = 'translateX(-50%)';
+            logo.style.zIndex = '100';
+            logo.style.transition = `opacity ${config.transitionDuration} ease-out`;
+        }
+
+        
+        if (rightMenu) {
+            rightMenu.style.position = 'fixed';
+            rightMenu.style.top = config.topPosition;
+            rightMenu.style.right = '3rem';
+            rightMenu.style.zIndex = '110';
+            rightMenu.style.transition = `opacity ${config.transitionDuration} ease-out`;
+        }
 
         function updateOnScroll() {
             const scrollY = window.scrollY;
-            const fadeStart = 80;   
-            const fadeEnd = 280;    
-
-            let opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
+            let opacity = 1 - (scrollY - config.fadeStart) / (config.fadeEnd - config.fadeStart);
             opacity = Math.max(0, Math.min(1, opacity));
 
-            logo.style.opacity = opacity;
-
-            
-            if (rightMenu) {
-                rightMenu.style.transition = 'opacity 0.7s ease-out';
-                rightMenu.style.opacity = opacity;
-            }
+            if (logo) logo.style.opacity = opacity;
+            if (rightMenu) rightMenu.style.opacity = opacity;
         }
 
         window.addEventListener('scroll', updateOnScroll, { passive: true });
-        updateOnScroll();
+        updateOnScroll(); 
     });
 </script>
   

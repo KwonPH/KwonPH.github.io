@@ -26,25 +26,29 @@ html,
     display: none !important;
 }
 
-/* [3] 로고 및 헤더 텍스트 (검은색으로 변경) */
+/* [2] 로고 */
 .header a[href="/"],
-.main-menu a[href="/"],
-.header .navbar-brand,
-.header nav a {
+.main-menu a[href="/"] {
     position: absolute;
     left: 50%;
-    top: 1vh;
+    top: 3vh;
     transform: translateX(-50%);
     z-index: 100;
     font-size: 2.8rem;
     font-weight: 800;
-    color: #000000 !important;
-    /* 검은색으로 변경 */
-    text-shadow: none !important;
-    /* 흰색 배경이므로 그림자 제거 */
+    color: white;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
     letter-spacing: -0.03em;
     white-space: nowrap;
-    transition: all 0.6s ease;
+}
+
+/* 우측 상단 아이콘들 */
+header .flex.items-center.gap-x-4,
+header nav {
+    position: absolute;
+    right: 3rem;
+    top: 3vh;
+    z-index: 110;
 }
 
 /* [4] 본문 텍스트 상세 설정 (검은색 강제) */

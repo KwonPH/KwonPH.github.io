@@ -103,8 +103,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.2a99ca530b69cefafb2aef6ac25edfc3da8e2c2d7e062631c72910eb6a330aa172facc29ec8879b377400f19202f139f2496d2751dd51674a769b29e502d1ae6.css"
-    integrity="sha512-KpnKUwtpzvr7Ku9qwl7fw9qOLC1&#43;BiYxxykQ62ozCqFy&#43;swp7Ih5s3dADxkgLxOfJJbSdR3VFnSnabKeUC0a5g==">
+    href="/css/main.bundle.min.36bff95f12ccec7d62167932632e2c380728bf44e2f5abc59556d0c46d9a2fa84970536e1c289ecccb4c1befd568ceb68afca36f2e90db323a468266033c2cfe.css"
+    integrity="sha512-Nr/5XxLM7H1iFnkyYy4sOAcov0Ti9avFlVbQxG2aL6hJcFNuHCiezMtMG&#43;/VaM62ivyjby6Q2zI6RoJmAzws/g==">
 
   
   
@@ -456,37 +456,48 @@
   
   
     <script>
-    console.log("🚀 Blowfish Extend Footer Script LOADED");
+    console.log("🚀 Fixed Position Fade-out LOADED");
 
     document.addEventListener('DOMContentLoaded', function () {
-        console.log("✅ DOM Ready");
+
+        const logo = document.querySelector('a[href="/"]') ||
+            document.querySelector('.navbar-brand') ||
+            document.querySelector('.header a');
+
+        const rightMenu = document.querySelector('header .flex.items-center.gap-x-4') ||
+            document.querySelector('header nav');
+
+        console.log("로고 발견:", logo ? "✅" : "❌");
+
+        if (!logo) return;
 
         
-        let hero = document.querySelector('.layout-background');
+        logo.style.position = 'fixed';
+        logo.style.top = '5vh';
+        logo.style.left = '50%';
+        logo.style.transform = 'translateX(-50%)';
+        logo.style.zIndex = '100';
+        logo.style.transition = 'opacity 0.7s ease-out';
 
-        if (!hero) {
+        function updateOnScroll() {
+            const scrollY = window.scrollY;
+            const fadeStart = 80;   
+            const fadeEnd = 280;    
+
+            let opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
+            opacity = Math.max(0, Math.min(1, opacity));
+
+            logo.style.opacity = opacity;
+
             
-            hero = document.querySelector('body > div.relative') ||
-                document.querySelector('body > div:first-child') ||
-                document.querySelector('main')?.closest('div') ||
-                document.querySelector('[style*="background-image"]');
-        }
-
-        console.log("최종 Hero 발견:", hero ? "✅ 성공" : "❌ 실패");
-        if (hero) console.log("Hero 클래스:", hero.className);
-
-        if (!hero) return;
-
-        function updateHero() {
-            if (window.scrollY > 120) {
-                hero.classList.add('scrolled');
-            } else {
-                hero.classList.remove('scrolled');
+            if (rightMenu) {
+                rightMenu.style.transition = 'opacity 0.7s ease-out';
+                rightMenu.style.opacity = opacity;
             }
         }
 
-        window.addEventListener('scroll', updateHero, { passive: true });
-        updateHero();
+        window.addEventListener('scroll', updateOnScroll, { passive: true });
+        updateOnScroll();
     });
 </script>
   

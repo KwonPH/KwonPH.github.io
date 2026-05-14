@@ -1,32 +1,58 @@
 <script>
-    console.log("🚀 Smooth Fade-out Script LOADED");
+    console.log("🚀 Fixed Fade-out v6 (변수 중앙관리) LOADED");
 
     document.addEventListener('DOMContentLoaded', function () {
-        const hero = document.querySelector('.layout-background');
-        if (!hero) return;
 
-        const logo = document.querySelector('.header a[href="/"], .main-menu a[href="/"], .navbar-brand');
-        const rightMenu = document.querySelector('header .flex.items-center.gap-x-4, header nav');
+        // ====================== 조정 변수 ======================
+        const config = {
+            topPosition: '1vh',     // 상단 간격 (1vh ~ 4vh 추천)
+            fadeStart: 80,            // 사라지기 시작하는 스크롤 위치 (px)
+            fadeEnd: 100,             // 완전히 사라지는 스크롤 위치 (px)
+            transitionDuration: '2s' // 페이드아웃 속도 (0.5s ~ 1.2s 추천)
+        };
+        // =====================================================
+
+        // 로고
+        const logo = document.querySelector('a[href="/"]') ||
+            document.querySelector('.navbar-brand') ||
+            document.querySelector('.header a');
+
+        // 우측 상단 메뉴
+        const rightMenu = document.querySelector('header .flex.items-center.gap-x-4') ||
+            document.querySelector('header nav') ||
+            document.querySelector('.flex.items-center');
+
+        console.log("로고 발견:", logo ? "✅" : "❌");
+        console.log("우측 메뉴 발견:", rightMenu ? "✅" : "❌");
+
+        if (!logo && !rightMenu) return;
+
+        // 로고 fixed 설정
+        if (logo) {
+            logo.style.position = 'fixed';
+            logo.style.top = config.topPosition;
+            logo.style.left = '50%';
+            logo.style.transform = 'translateX(-50%)';
+            logo.style.zIndex = '100';
+            logo.style.transition = `opacity ${config.transitionDuration} ease-out`;
+        }
+
+        // 우측 메뉴 fixed 설정
+        if (rightMenu) {
+            rightMenu.style.position = 'fixed';
+            rightMenu.style.top = config.topPosition;
+            rightMenu.style.right = '3rem';
+            rightMenu.style.zIndex = '110';
+            rightMenu.style.transition = `opacity ${config.transitionDuration} ease-out`;
+        }
 
         function updateOnScroll() {
             const scrollY = window.scrollY;
-            const fadeStart = 80;   // 언제부터 사라지기 시작할지
-            const fadeEnd = 280;    // 완전히 사라지는 지점
-
-            let opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
-            opacity = Math.max(0, Math.min(1, opacity));   // 0~1 사이로 제한
+            let opacity = 1 - (scrollY - config.fadeStart) / (config.fadeEnd - config.fadeStart);
+            opacity = Math.max(0, Math.min(1, opacity));
 
             if (logo) logo.style.opacity = opacity;
             if (rightMenu) rightMenu.style.opacity = opacity;
-
-            // 완전히 사라지면 pointer-events 제거
-            if (opacity < 0.1) {
-                if (logo) logo.style.pointerEvents = 'none';
-                if (rightMenu) rightMenu.style.pointerEvents = 'none';
-            } else {
-                if (logo) logo.style.pointerEvents = 'auto';
-                if (rightMenu) rightMenu.style.pointerEvents = 'auto';
-            }
         }
 
         window.addEventListener('scroll', updateOnScroll, { passive: true });

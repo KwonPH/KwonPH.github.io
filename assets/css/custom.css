@@ -1,4 +1,15 @@
-/* [1] Hero Section */
+/* [1] 전체 배경 및 기본 텍스트 설정 */
+body,
+html,
+.layout-background,
+.prose {
+    background-color: #ffffff !important;
+    /* 전체 배경 흰색 */
+    color: #000000 !important;
+    /* 기본 텍스트 검은색 */
+}
+
+/* [2] Hero Section 및 오버레이 제거 */
 .layout-background {
     min-height: 100vh;
     display: flex;
@@ -6,27 +17,20 @@
     justify-content: flex-start;
     margin: 0;
     padding: 0;
-    background: url('YOUR-HERO-IMAGE.jpg') center/cover no-repeat fixed;
     position: relative;
     overflow: hidden;
-    /* 중요 */
 }
 
-/* Hero 내부에 어두운 오버레이 (텍스트 가독성 + 고급스러움) */
+/* 기존 어두운 오버레이 제거 (흰색 배경을 위해) */
 .layout-background::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    /* 필요에 따라 0.25 ~ 0.45 조정 */
-    z-index: 1;
-    opacity: 1;
-    transition: opacity 0.6s ease;
+    display: none !important;
 }
 
-/* [2] 로고 */
+/* [3] 로고 및 헤더 텍스트 (검은색으로 변경) */
 .header a[href="/"],
-.main-menu a[href="/"] {
+.main-menu a[href="/"],
+.header .navbar-brand,
+.header nav a {
     position: absolute;
     left: 50%;
     top: 1vh;
@@ -34,57 +38,36 @@
     z-index: 100;
     font-size: 2.8rem;
     font-weight: 800;
-    color: white;
-    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+    color: #000000 !important;
+    /* 검은색으로 변경 */
+    text-shadow: none !important;
+    /* 흰색 배경이므로 그림자 제거 */
     letter-spacing: -0.03em;
     white-space: nowrap;
     transition: all 0.6s ease;
-    /* 부드러운 전환 */
 }
 
-/* [3] 본문 */
+/* [4] 본문 텍스트 상세 설정 (검은색 강제) */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose p,
+.prose li,
+.prose strong,
+.prose a {
+    color: #000000 !important;
+    /* 모든 요소 검은색 */
+}
+
 .prose {
     margin-top: 100vh;
     max-width: 850px;
     margin-left: auto;
     margin-right: auto;
-    background: white;
+    background: #ffffff !important;
     padding: 6rem 2.5rem 8rem;
-    box-shadow: 0 -30px 50px rgba(0, 0, 0, 0.12);
+    /* 그림자를 연하게 하여 경계를 깔끔하게 정리 */
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
     position: relative;
     z-index: 10;
-}
-
-/* ==================== 스크롤 페이드아웃 (강력 버전) ==================== */
-
-.scrolled a[href="/"],
-.scrolled .navbar-brand,
-.scrolled .header a,
-.scrolled .main-menu a,
-.scrolled header nav,
-.scrolled .flex.items-center.gap-x-4,
-.scrolled .logo,
-.scrolled [class*="brand"] {
-    opacity: 0 !important;
-    transform: translateY(-50px) !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    transition: all 0.9s ease !important;
-}
-
-/* 우측 상단 메뉴 전체 */
-.scrolled header .flex.items-center {
-    opacity: 0 !important;
-}
-
-/* Hero 오버레이 */
-.layout-background.scrolled::before,
-.scrolled::before {
-    opacity: 0 !important;
-}
-
-/* 디버깅 - scrolled 되면 화면 전체에 빨간 선 */
-.scrolled {
-    outline: 5px solid red !important;
-    outline-offset: -5px;
 }

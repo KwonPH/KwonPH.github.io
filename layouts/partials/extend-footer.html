@@ -1,34 +1,35 @@
 <script>
-    console.log("🚀 Blowfish Extend Footer Script LOADED");
+    console.log("🚀 Smooth Fade-out Script LOADED");
 
     document.addEventListener('DOMContentLoaded', function () {
-        console.log("✅ DOM Ready");
-
-        // 🔥 Blowfish background layout의 실제 풀스크린 컨테이너 찾기
-        let hero = document.querySelector('.layout-background');
-
-        if (!hero) {
-            // 여러 후보군으로 찾기
-            hero = document.querySelector('body > div.relative') ||
-                document.querySelector('body > div:first-child') ||
-                document.querySelector('main')?.closest('div') ||
-                document.querySelector('[style*="background-image"]');
-        }
-
-        console.log("최종 Hero 발견:", hero ? "✅ 성공" : "❌ 실패");
-        if (hero) console.log("Hero 클래스:", hero.className);
-
+        const hero = document.querySelector('.layout-background');
         if (!hero) return;
 
-        function updateHero() {
-            if (window.scrollY > 120) {
-                hero.classList.add('scrolled');
+        const logo = document.querySelector('.header a[href="/"], .main-menu a[href="/"], .navbar-brand');
+        const rightMenu = document.querySelector('header .flex.items-center.gap-x-4, header nav');
+
+        function updateOnScroll() {
+            const scrollY = window.scrollY;
+            const fadeStart = 80;   // 언제부터 사라지기 시작할지
+            const fadeEnd = 280;    // 완전히 사라지는 지점
+
+            let opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
+            opacity = Math.max(0, Math.min(1, opacity));   // 0~1 사이로 제한
+
+            if (logo) logo.style.opacity = opacity;
+            if (rightMenu) rightMenu.style.opacity = opacity;
+
+            // 완전히 사라지면 pointer-events 제거
+            if (opacity < 0.1) {
+                if (logo) logo.style.pointerEvents = 'none';
+                if (rightMenu) rightMenu.style.pointerEvents = 'none';
             } else {
-                hero.classList.remove('scrolled');
+                if (logo) logo.style.pointerEvents = 'auto';
+                if (rightMenu) rightMenu.style.pointerEvents = 'auto';
             }
         }
 
-        window.addEventListener('scroll', updateHero, { passive: true });
-        updateHero();
+        window.addEventListener('scroll', updateOnScroll, { passive: true });
+        updateOnScroll(); // 초기 실행
     });
 </script>

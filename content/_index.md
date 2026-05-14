@@ -1,6 +1,6 @@
 ---
 title: "권희범패시브건축"
-layout: "background"
+layout: "page"
 description: "지속 가능한 미래를 짓는 패시브 건축 연구소"
 showDate: false
 ---

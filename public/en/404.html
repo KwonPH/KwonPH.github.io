@@ -100,8 +100,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.c6637aa9b552f482675db7191124ef73eef47a132bc776bb85c578db11f7ba99dde5f4dfed735df37e7a8be37ad6016a7af0b1ccb2a67e095f05d3481c1135ed.css"
-    integrity="sha512-xmN6qbVS9IJnXbcZESTvc&#43;70ehMrx3a7hcV42xH3upnd5fTf7XNd8356i&#43;N61gFqevCxzLKmfglfBdNIHBE17Q==">
+    href="/css/main.bundle.min.fa0947551b3ac9c8d13a2df483a3af79caa1b8133340bf4ebaaadaa74382b6a406210c8454f0562b3d3ded47f67db11a55ff5ad41a4acf87dbc667eb35d90098.css"
+    integrity="sha512-&#43;glHVRs6ycjROi30g6OvecqhuBMzQL9Ouqrap0OCtqQGIQyEVPBWKz097Uf2fbEaVf9a1BpKz4fbxmfrNdkAmA==">
 
   
   
@@ -416,37 +416,38 @@
   
   
     <script>
-    console.log("🚀 Blowfish Extend Footer Script LOADED");
+    console.log("🚀 Smooth Fade-out Script LOADED");
 
     document.addEventListener('DOMContentLoaded', function () {
-        console.log("✅ DOM Ready");
-
-        
-        let hero = document.querySelector('.layout-background');
-
-        if (!hero) {
-            
-            hero = document.querySelector('body > div.relative') ||
-                document.querySelector('body > div:first-child') ||
-                document.querySelector('main')?.closest('div') ||
-                document.querySelector('[style*="background-image"]');
-        }
-
-        console.log("최종 Hero 발견:", hero ? "✅ 성공" : "❌ 실패");
-        if (hero) console.log("Hero 클래스:", hero.className);
-
+        const hero = document.querySelector('.layout-background');
         if (!hero) return;
 
-        function updateHero() {
-            if (window.scrollY > 120) {
-                hero.classList.add('scrolled');
+        const logo = document.querySelector('.header a[href="/"], .main-menu a[href="/"], .navbar-brand');
+        const rightMenu = document.querySelector('header .flex.items-center.gap-x-4, header nav');
+
+        function updateOnScroll() {
+            const scrollY = window.scrollY;
+            const fadeStart = 80;   
+            const fadeEnd = 280;    
+
+            let opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
+            opacity = Math.max(0, Math.min(1, opacity));   
+
+            if (logo) logo.style.opacity = opacity;
+            if (rightMenu) rightMenu.style.opacity = opacity;
+
+            
+            if (opacity < 0.1) {
+                if (logo) logo.style.pointerEvents = 'none';
+                if (rightMenu) rightMenu.style.pointerEvents = 'none';
             } else {
-                hero.classList.remove('scrolled');
+                if (logo) logo.style.pointerEvents = 'auto';
+                if (rightMenu) rightMenu.style.pointerEvents = 'auto';
             }
         }
 
-        window.addEventListener('scroll', updateHero, { passive: true });
-        updateHero();
+        window.addEventListener('scroll', updateOnScroll, { passive: true });
+        updateOnScroll(); 
     });
 </script>
   

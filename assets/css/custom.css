@@ -1,57 +1,90 @@
-/* 권희범패시브건축 텍스트를 가운데 정렬 */
-.header a[href="/"] {
+/* [1] Hero Section */
+.layout-background {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    background: url('YOUR-HERO-IMAGE.jpg') center/cover no-repeat fixed;
+    position: relative;
+    overflow: hidden;
+    /* 중요 */
+}
+
+/* Hero 내부에 어두운 오버레이 (텍스트 가독성 + 고급스러움) */
+.layout-background::before {
+    content: '';
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    /* 필요에 따라 0.25 ~ 0.45 조정 */
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.6s ease;
 }
 
-/* 기존 좌측 정렬을 무시하고 중앙으로 강제 이동 */
-.header .flex.items-center.justify-between {
-    justify-content: center !important;
-    position: relative;
-}
-
-/* 오른쪽에 있는 검색·아이콘 버튼들은 오른쪽으로 유지 */
-.header .flex.items-center.gap-x-4,
-.header nav {
-    margin-left: auto;
-    position: relative;
-    z-index: 20;
-}
-
-/* ====================== 헤더 중앙 로고 ====================== */
-.main-menu {
-    position: relative;
-    justify-content: center !important;
-}
-
-/* 로고를 정확히 가운데로 */
+/* [2] 로고 */
+.header a[href="/"],
 .main-menu a[href="/"] {
     position: absolute;
     left: 50%;
+    top: 1vh;
     transform: translateX(-50%);
-    z-index: 10;
+    z-index: 100;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+    letter-spacing: -0.03em;
     white-space: nowrap;
+    transition: all 0.6s ease;
+    /* 부드러운 전환 */
 }
 
-/* 오른쪽 메뉴들은 오른쪽으로 유지 */
-.main-menu>.flex.items-center.ms-auto {
+/* [3] 본문 */
+.prose {
+    margin-top: 100vh;
+    max-width: 850px;
     margin-left: auto;
+    margin-right: auto;
+    background: white;
+    padding: 6rem 2.5rem 8rem;
+    box-shadow: 0 -30px 50px rgba(0, 0, 0, 0.12);
     position: relative;
-    z-index: 20;
+    z-index: 10;
 }
 
-/* 모바일에서도 잘 보이게 */
-@media (max-width: 768px) {
-    .main-menu a[href="/"] {
-        position: static;
-        transform: none;
-        left: auto;
-        margin: 0 auto;
-    }
+/* ==================== 스크롤 페이드아웃 (강력 버전) ==================== */
 
-    .main-menu {
-        justify-content: space-between !important;
-    }
+.scrolled a[href="/"],
+.scrolled .navbar-brand,
+.scrolled .header a,
+.scrolled .main-menu a,
+.scrolled header nav,
+.scrolled .flex.items-center.gap-x-4,
+.scrolled .logo,
+.scrolled [class*="brand"] {
+    opacity: 0 !important;
+    transform: translateY(-50px) !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: all 0.9s ease !important;
+}
+
+/* 우측 상단 메뉴 전체 */
+.scrolled header .flex.items-center {
+    opacity: 0 !important;
+}
+
+/* Hero 오버레이 */
+.layout-background.scrolled::before,
+.scrolled::before {
+    opacity: 0 !important;
+}
+
+/* 디버깅 - scrolled 되면 화면 전체에 빨간 선 */
+.scrolled {
+    outline: 5px solid red !important;
+    outline-offset: -5px;
 }

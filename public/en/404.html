@@ -100,8 +100,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.fda49fdc79a1668e4f7df721387cc0fe8659681d3fec20a6e2cdc1ab584b69ec9a935899c560d5a9262edb5e96b2d78fe93f74ff2616fe37e91e8a69903fb099.css"
-    integrity="sha512-/aSf3HmhZo5PffchOHzA/oZZaB0/7CCm4s3Bq1hLaeyak1iZxWDVqSYu216WsteP6T90/yYW/jfpHoppkD&#43;wmQ==">
+    href="/css/main.bundle.min.c6637aa9b552f482675db7191124ef73eef47a132bc776bb85c578db11f7ba99dde5f4dfed735df37e7a8be37ad6016a7af0b1ccb2a67e095f05d3481c1135ed.css"
+    integrity="sha512-xmN6qbVS9IJnXbcZESTvc&#43;70ehMrx3a7hcV42xH3upnd5fTf7XNd8356i&#43;N61gFqevCxzLKmfglfBdNIHBE17Q==">
 
   
   
@@ -414,6 +414,41 @@
     </script>
   
   
+  
+    <script>
+    console.log("🚀 Blowfish Extend Footer Script LOADED");
+
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log("✅ DOM Ready");
+
+        
+        let hero = document.querySelector('.layout-background');
+
+        if (!hero) {
+            
+            hero = document.querySelector('body > div.relative') ||
+                document.querySelector('body > div:first-child') ||
+                document.querySelector('main')?.closest('div') ||
+                document.querySelector('[style*="background-image"]');
+        }
+
+        console.log("최종 Hero 발견:", hero ? "✅ 성공" : "❌ 실패");
+        if (hero) console.log("Hero 클래스:", hero.className);
+
+        if (!hero) return;
+
+        function updateHero() {
+            if (window.scrollY > 120) {
+                hero.classList.add('scrolled');
+            } else {
+                hero.classList.remove('scrolled');
+            }
+        }
+
+        window.addEventListener('scroll', updateHero, { passive: true });
+        updateHero();
+    });
+</script>
   
 </footer>
 

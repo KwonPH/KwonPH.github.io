@@ -1,0 +1,34 @@
+<script>
+    console.log("🚀 Blowfish Extend Footer Script LOADED");
+
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log("✅ DOM Ready");
+
+        // 🔥 Blowfish background layout의 실제 풀스크린 컨테이너 찾기
+        let hero = document.querySelector('.layout-background');
+
+        if (!hero) {
+            // 여러 후보군으로 찾기
+            hero = document.querySelector('body > div.relative') ||
+                document.querySelector('body > div:first-child') ||
+                document.querySelector('main')?.closest('div') ||
+                document.querySelector('[style*="background-image"]');
+        }
+
+        console.log("최종 Hero 발견:", hero ? "✅ 성공" : "❌ 실패");
+        if (hero) console.log("Hero 클래스:", hero.className);
+
+        if (!hero) return;
+
+        function updateHero() {
+            if (window.scrollY > 120) {
+                hero.classList.add('scrolled');
+            } else {
+                hero.classList.remove('scrolled');
+            }
+        }
+
+        window.addEventListener('scroll', updateHero, { passive: true });
+        updateHero();
+    });
+</script>

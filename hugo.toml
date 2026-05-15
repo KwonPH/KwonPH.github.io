@@ -12,7 +12,7 @@ theme = 'blowfish'
   custom_css = ["css/custom.css"]
   
 [params.header]
-    layout = "basic" 
+    layout = "" 
     showName = false # 상단 좌측의 사이트 이름을 숨깁니다.
     
 [params.footer]

@@ -260,7 +260,7 @@ header button svg {
     .fullscreen-hero {
         top: 0vh !important;
         margin-top: 0 !important;
-        position: absolute !important;
+        position: relative !important;
     }
 
     /* 4. 로고 위치 미세 조정 */
@@ -282,7 +282,7 @@ header button svg {
         z-index: 10 !important;
 
         /* 글자가 사진에 너무 딱 붙지 않게 안쪽 여백 추가 */
-        padding-top: 100vh !important;
+        padding-top: 0vh !important;
         padding-bottom: 5rem !important;
     }
 

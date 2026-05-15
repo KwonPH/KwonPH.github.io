@@ -214,9 +214,11 @@ header button svg {
     .header a[href="/"],
     .main-menu a[href="/"],
     .header .navbar-brand {
+        left: -50%;
+        /* 중앙 정렬을 유지하면서 왼쪽으로 이동 */
         font-size: 1.6rem !important;
         /* 기존 2.8~3rem에서 약 절반으로 축소 */
-        top: 2.9vh !important;
+        top: 1.5vh !important;
         /* 세로 위치 미세 조정 */
         letter-spacing: -0.05em !important;
         /* 글자 간격을 좁혀 가로 폭 절약 */
@@ -226,7 +228,7 @@ header button svg {
     header .flex.items-center.gap-x-4,
     header nav,
     .flex.items-center {
-        right: 1rem !important;
+        right: .5rem !important;
         /* 아이콘들을 오른쪽 끝으로 더 붙임 */
         gap: 0.5rem !important;
         /* 아이콘 사이의 간격도 살짝 줄임 */
@@ -280,7 +282,7 @@ header button svg {
         z-index: 10 !important;
 
         /* 글자가 사진에 너무 딱 붙지 않게 안쪽 여백 추가 */
-        padding-top: 50rem !important;
+        padding-top: 100vh !important;
         padding-bottom: 5rem !important;
     }
 

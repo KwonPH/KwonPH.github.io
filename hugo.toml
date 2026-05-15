@@ -21,3 +21,34 @@ theme = 'blowfish'
 
 [markup.goldmark.renderer]
   unsafe = true # 마크다운 내의 HTML(스타일 태그) 사용을 허용합니다.
+
+[[languages.ko.menu.main]]
+    name = "Homes"
+    url = "/homes/"
+    weight = 10
+
+[[languages.ko.menu.main]]
+    name = "Community"
+    url = "/community/"
+    weight = 20
+
+[[languages.ko.menu.main]]
+    name = "Solar"
+    url = "/solar/"
+    weight = 30
+
+[[languages.ko.menu.main]]
+    name = "Meet"
+    url = "/meet/"
+    weight = 40
+
+[[languages.ko.menu.main]]
+    name = "Follow"
+    url = "/follow/"
+    weight = 50
+
+[[languages.ko.menu.main]]
+    name = "Child's Farm"
+    url = "/homes/childs-farm/"
+    parent = "Homes"  # Homes의 하위 항목으로 지정
+    weight = 11

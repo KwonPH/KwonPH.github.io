@@ -64,7 +64,7 @@ header nav {
 }
 
 .prose {
-    margin-top: -5vh;
+    margin-top: -13vh;
     max-width: 850px;
     margin-left: auto;
     margin-right: auto;
@@ -80,7 +80,7 @@ header nav {
 .fullscreen-hero {
     width: 100vw;
     /* 가로를 기기 너비의 100%로 */
-    height: 100vh;
+    height: 103vh;
     /* 세로를 기기 높이의 100%로 */
     position: relative;
     left: 50%;
@@ -88,6 +88,7 @@ header nav {
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    margin-top: -1vh;
     overflow: hidden;
 }
 
@@ -108,6 +109,74 @@ header nav {
         height: 100svh;
         /* 모바일 브라우저 하단 바를 고려한 최신 높이 단위 */
     }
+}
+
+/* 전체 메뉴(Mobile/Overlay Menu) 배경 설정 */
+#navbar-menu {
+    background-color: #1a365d !important;
+    /* 사우스 마운틴 특유의 딥 블루 */
+}
+
+/* 메뉴 내부 텍스트 정렬 및 스타일 */
+#navbar-menu .flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 가로 중앙 */
+    justify-content: center;
+    /* 세로 중앙 */
+    text-align: center;
+}
+
+/* 메뉴 항목(글자) 스타일 */
+#navbar-menu a {
+    color: #ffffff !important;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    transition: opacity 0.3s ease;
+}
+
+#navbar-menu a:hover {
+    opacity: 0.7;
+}
+
+/* 닫기 버튼(X) 색상 */
+#navbar-menu button {
+    color: #ffffff !important;
+}
+
+/* 1. 데스크탑의 텍스트 메뉴(Homes, Solar 등) 숨기기 */
+.header nav ul,
+.header nav .flex.flex-row {
+    display: none !important;
+}
+
+/* 2. 숨겨져 있던 모바일용 '햄버거 버튼'을 데스크탑에서도 보이게 하기 */
+.header button#ps-menu-button,
+.header .flex.items-center button {
+    display: block !important;
+    color: #ffffff !important;
+    /* 사진 위에서 잘 보이게 흰색 */
+    z-index: 200;
+}
+
+/* 3. 우측 상단 아이콘 정렬 (돋보기, 설정, 햄버거 버튼) */
+header .flex.items-center.gap-x-4 {
+    position: absolute;
+    right: 3rem;
+    top: 3vh;
+    display: flex !important;
+    align-items: center;
+    gap: 1.5rem;
+    /* 아이콘 사이 간격 */
+}
+
+/* 4. 햄버거 버튼 디자인 (사우스 마운틴 스타일로 크게) */
+header button svg {
+    width: 2rem;
+    height: 2rem;
 }
 
 /* ==================== 모바일 최적화 (화면 폭 768px 이하) ==================== */
@@ -159,7 +228,7 @@ header nav {
     /* 3. 히어로 이미지(사진)를 강제로 천장에 밀착 */
     /* 음수 마진 대신 top: 0으로 정교하게 타격합니다. */
     .fullscreen-hero {
-        top: 0 !important;
+        top: 0vh !important;
         margin-top: 0 !important;
         position: absolute !important;
     }
@@ -196,4 +265,67 @@ header nav {
     /* 3. (선택사항) 'KO' 텍스트 숨기기: 공간이 너무 부족하면 아이콘만 남김 */
     /* 필요하시다면 아래 주석을 해제하세요. */
     /* .language-switch span { display: none !important; } */
+}
+
+/* ==================== [중요] 데스크톱에서도 햄버거 버튼만 보이게 하기 ==================== */
+
+/* 1. 상단 데스크톱 메뉴 완전 숨기기 */
+.header nav,
+.header nav *,
+nav ul,
+nav li,
+.header .flex.items-center a,
+.header .flex.items-center>div:not(button),
+.header nav .flex.flex-row {
+    display: none !important;
+}
+
+/* 2. 햄버거 버튼 강제 표시 + 최우선권 */
+.header button,
+.header [role="button"],
+button#ps-menu-button,
+.header .menu-button,
+.header .hamburger-button,
+.header .flex.items-center button {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff !important;
+    background: transparent !important;
+    border: none !important;
+    z-index: 9999 !important;
+    /* z-index 최대로 */
+    width: 52px;
+    height: 52px;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 3. 우측 상단 컨테이너 정리 */
+header .flex.items-center.gap-x-4,
+.header .flex.items-center {
+    display: flex !important;
+    position: absolute !important;
+    right: 2.5rem !important;
+    top: 4vh !important;
+    gap: 8px !important;
+    z-index: 9999 !important;
+    align-items: center;
+}
+
+/* 4. 다크모드 토글 완전 숨기기 */
+.theme-toggle,
+.dark-mode-toggle,
+button[title*="theme"],
+button[title*="dark"],
+button[title*="light"],
+[aria-label*="theme"] {
+    display: none !important;
+}
+
+/* 5. 햄버거 아이콘 크기 */
+header button svg,
+.header button svg {
+    width: 30px !important;
+    height: 30px !important;
 }

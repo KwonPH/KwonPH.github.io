@@ -91,8 +91,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.81df8868e50a54f7ed21ff4e011a431ec2d9406314bdce89c54a7d77bd1da5074ba0194899d1afa5631eee17f772ac9ce5f8961854d2f6162594ad1ff1a9b490.css"
-    integrity="sha512-gd&#43;IaOUKVPftIf9OARpDHsLZQGMUvc6JxUp9d70dpQdLoBlImdGvpWMe7hf3cqyc5fiWGFTS9hYllK0f8am0kA==">
+    href="/css/main.bundle.min.ba6804f02a1f749cdfec67b82436298fb8dee73c15292f8f3ae7444d44110d4ab3aaddb1bfaccc9efcb05a4f014bb568b0ea25c7d6196a956e6e417116e46f13.css"
+    integrity="sha512-umgE8CofdJzf7Ge4JDYpj7je5zwVKS&#43;POudETUQRDUqzqt2xv6zMnvywWk8BS7VosOolx9YZapVubkFxFuRvEw==">
 
   
   
@@ -751,7 +751,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const config = {
             topPosition: '1vh',
-            slideDistance: 150,      
+            slideDistance: 10,      
             transitionDuration: '.70s',
             scrollDelta: 5           
         };
@@ -785,7 +785,7 @@
         [logo, rightMenu].forEach(el => {
             if (el) {
                 el.style.position = 'fixed';
-                el.style.zIndex = '1000';
+                el.style.zIndex = '100';
                 el.style.transition = `transform ${config.transitionDuration} ease-out, opacity ${config.transitionDuration}`;
             }
         });
@@ -837,9 +837,13 @@
             }
         }
 
-        window.addEventListener('scroll', updateOnScroll, { passive: true });
+        wwindow.addEventListener('scroll', updateOnScroll, { passive: true });
+        
+        document.addEventListener('click', () => setTimeout(updateOnScroll, 100));
+
         updateOnScroll();
     });
+
 </script>
   
 </footer>

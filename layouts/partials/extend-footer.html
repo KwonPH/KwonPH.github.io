@@ -4,7 +4,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const config = {
             topPosition: '1vh',
-            slideDistance: 150,      // 위로 숨겨질 거리 (px)
+            slideDistance: 10,      // 위로 숨겨질 거리 (px)
             transitionDuration: '.70s',
             scrollDelta: 5           // 미세한 스크롤 무시 (민감도 조절)
         };
@@ -38,7 +38,7 @@
         [logo, rightMenu].forEach(el => {
             if (el) {
                 el.style.position = 'fixed';
-                el.style.zIndex = '1000';
+                el.style.zIndex = '100';
                 el.style.transition = `transform ${config.transitionDuration} ease-out, opacity ${config.transitionDuration}`;
             }
         });
@@ -90,7 +90,11 @@
             }
         }
 
-        window.addEventListener('scroll', updateOnScroll, { passive: true });
+        wwindow.addEventListener('scroll', updateOnScroll, { passive: true });
+        // 메뉴 열림/닫힘을 감지하기 위한 감시 (클릭 시에도 반응하도록)
+        document.addEventListener('click', () => setTimeout(updateOnScroll, 100));
+
         updateOnScroll();
     });
+
 </script>

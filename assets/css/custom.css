@@ -75,7 +75,7 @@ header nav {
     position: absolute;
     right: 3rem;
     top: 3vh;
-    z-index: 110;
+    z-index: 100;
 }
 
 /* [4] 본문 텍스트 상세 설정 (검은색 강제) */
@@ -137,42 +137,6 @@ header nav {
         height: 100svh;
         /* 모바일 브라우저 하단 바를 고려한 최신 높이 단위 */
     }
-}
-
-/* 전체 메뉴(Mobile/Overlay Menu) 배경 설정 */
-#navbar-menu {
-    background-color: #1a365d !important;
-    /* 사우스 마운틴 특유의 딥 블루 */
-}
-
-/* 메뉴 내부 텍스트 정렬 및 스타일 */
-#navbar-menu .flex-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* 가로 중앙 */
-    justify-content: center;
-    /* 세로 중앙 */
-    text-align: center;
-}
-
-/* 메뉴 항목(글자) 스타일 */
-#navbar-menu a {
-    color: #ffffff !important;
-    font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-    transition: opacity 0.3s ease;
-}
-
-#navbar-menu a:hover {
-    opacity: 0.7;
-}
-
-/* 닫기 버튼(X) 색상 */
-#navbar-menu button {
-    color: #ffffff !important;
 }
 
 /* 1. 데스크탑의 텍스트 메뉴(Homes, Solar 등) 숨기기 */
@@ -297,39 +261,90 @@ header button svg {
     /* .language-switch span { display: none !important; } */
 }
 
-/* 1. 데스크탑 텍스트 메뉴(Homes, Solar 등) 완전 삭제 */
-/* Tailwind의 hidden lg:flex 클래스를 강제로 display:none으로 만듭니다. */
-header nav .hidden.lg\:flex,
-header nav ul {
+/* [5] 다크모드 전환 버튼(해/달 아이콘) 완전 제거 */
+#appearance-switcher,
+#appearance-switcher-mobile,
+[id^="appearance-switcher"] {
     display: none !important;
 }
 
-/* 2. 숨겨진 햄버거 버튼(Mobile Menu Button) 강제 소환 */
-/* Blowfish가 lg:hidden으로 숨겨둔 버튼을 PC에서도 보이게 합니다. */
-header button#ps-menu-button,
-header button[aria-label="Menu"],
-header .cursor-pointer.p-2.lg\:hidden {
-    display: flex !important;
-    /* 숨김 해제 */
-    visibility: visible !important;
-    /* 시각화 */
-    position: relative !important;
-    z-index: 1000 !important;
-}
-
-/* 3. 우측 아이콘 라인 정렬 (돋보기, 설정, 햄버거 버튼) */
+/* 아이콘들이 사라진 후 우측 상단 간격 재조정 (선택 사항) */
 header .flex.items-center.gap-x-4 {
-    display: flex !important;
-    position: absolute !important;
-    right: 2rem !important;
-    top: 3vh !important;
-    gap: 1rem !important;
+    gap: 1.2rem !important;
+    /* 돋보기와 햄버거 버튼 사이 간격 최적화 */
 }
 
-/* 4. 버튼 색상 및 크기 보정 (사진 위에서 잘 보이게) */
-header button svg {
-    color: #ffffff !important;
-    width: 1.8rem !important;
-    height: 1.8rem !important;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+/* [3] 메뉴가 열렸을 때 로고와 돋보기를 메뉴 뒤로 숨기기 */
+/* 메뉴판이 열리면(html에 'overflow-hidden' 클래스가 붙음) 상단 요소 숨김 */
+.overflow-hidden .header a[href="/"],
+.overflow-hidden header .flex.items-center.gap-x-4 {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.2s ease;
+}
+
+/* ==================== 모바일 풀스크린 메뉴 강제 적용 ==================== */
+@media (max-width: 768px) {
+
+    #navbar-menu {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+        /* ← 핵심: 화면 전체 높이 */
+        min-height: 100dvh !important;
+        background-color: #1a365d !important;
+        z-index: 99999 !important;
+        display: none !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding-top: 100px !important;
+        overflow-y: auto !important;
+    }
+
+    /* 메뉴 열릴 때 강제 표시 */
+    #navbar-menu.open,
+    #navbar-menu.active,
+    #navbar-menu.show,
+    #navbar-menu[style*="display: block"] {
+        display: flex !important;
+    }
+
+    /* 메뉴 내부 콘텐츠 중앙 정렬 + 충분한 공간 */
+    #navbar-menu .flex-col {
+        width: 100% !important;
+        padding: 80px 20px 40px !important;
+        gap: 2.8rem !important;
+        align-items: center !important;
+    }
+
+    #navbar-menu a {
+        font-size: 2.15rem !important;
+        font-weight: 600 !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding: 10px 0 !important;
+    }
+
+    /* X 버튼 더 크게 + 잘 보이게 */
+    #navbar-menu button {
+        position: fixed !important;
+        top: 5vh !important;
+        right: 6vw !important;
+        z-index: 100000 !important;
+        font-size: 2.8rem !important;
+        color: #ffffff !important;
+        background: none !important;
+        border: none !important;
+    }
+
+    /* 다른 모든 요소가 메뉴 아래로 가도록 */
+    .layout-background,
+    .fullscreen-hero,
+    header,
+    .prose {
+        z-index: 1 !important;
+    }
 }
